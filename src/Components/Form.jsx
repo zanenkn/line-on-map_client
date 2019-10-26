@@ -11,6 +11,9 @@ const Form = (props) => {
             id='degrees-input' type='number' placeholder='degrees' min='-180' max='180' />
         </label>
       </form>
+      <button id='move' onClick={props.handleMove}>
+        Move
+      </button>
     </div>
   )
 }

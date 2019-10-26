@@ -10,6 +10,11 @@ class App extends Component {
     this.setState({degrees: e.target.value});
   }
 
+  handleMove = (e) => {
+    e.preventDefault()
+    console.log(this.state.degrees)
+  }
+
   render() {
     return (
       <>
@@ -17,6 +22,7 @@ class App extends Component {
         </div>
         <Form 
           handleChange={this.handleChange.bind(this)}
+          handleMove={this.handleMove.bind(this)}
         />
       </>
     )
