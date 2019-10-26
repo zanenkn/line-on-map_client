@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import Form from './Components/Form'
 import Map from './Components/Map'
 import { getCoords, getPath } from  './Modules/Calculations'
@@ -7,7 +8,9 @@ class App extends Component {
   state = {
     degrees: '',
     coords: [],
-    path: 'M 200, 200'
+    lat: '',
+    lng: '',
+    zoom: ''
   }
 
   handleChange = (e) => {
@@ -32,6 +35,28 @@ class App extends Component {
     })
   }
 
+  handleSave = () => {
+    axios({
+      method: 'post',
+      url: 'https://line-on-map-backend.herokuapp.com/add-path',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      data: {
+        'svg': getPath(this.state.coords),
+        'lat': this.state.lat,
+        'lng': this.state.lng,
+        'zoom': this.state.zoom
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   render() {
     let path = getPath(this.state.coords)
     let display = (this.state.coords.length === 0) ? 'none' : 'block'
@@ -53,6 +78,7 @@ class App extends Component {
         <Form 
           handleChange={this.handleChange.bind(this)}
           handleMove={this.handleMove.bind(this)}
+          handleSave={this.handleSave.bind(this)}
         />
       </>
     )
