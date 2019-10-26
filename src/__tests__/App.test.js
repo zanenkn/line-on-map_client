@@ -1,11 +1,12 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 
 import App from '../App'
 
 describe('App', () => {
-  it('renders halloj', () => {
-    const component = shallow(<App />);
-    expect(component.contains(<>halloj</>)).toEqual(true)
+  it('renders divs for line and user input form', () => {
+    const component = mount(<App />);
+    expect(component.find('#line').exists()).toEqual(true)
+    expect(component.find('#user-input').exists()).toEqual(true);
   })
 })
