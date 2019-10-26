@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Form from './Components/Form'
+import Map from './Components/Map'
 import { getCoords, getPath } from  './Modules/Calculations'
 
 class App extends Component {
@@ -23,6 +24,14 @@ class App extends Component {
     })
   }
 
+  handleMapChange = ({center, zoom}) => {
+    this.setState({
+      zoom: zoom, 
+      lat: center.lat,
+      lng: center.lng
+    })
+  }
+
   render() {
     let path = getPath(this.state.coords)
     return (
@@ -34,6 +43,11 @@ class App extends Component {
             </g>
           </svg>
         </div>
+        <Map 
+          defCenter={{lat: 57.7089, lng: 11.9746}}
+          defZoom={11}
+          handleMapChange={this.handleMapChange.bind(this)}
+        />
         <Form 
           handleChange={this.handleChange.bind(this)}
           handleMove={this.handleMove.bind(this)}
