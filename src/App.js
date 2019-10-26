@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Form from './Components/Form'
+import { getCoords } from  './Modules/Calculations'
 
 class App extends Component {
   state = {
-    degrees: ''
+    degrees: '',
+    coords: []
   }
 
   handleChange = (e) => {
@@ -12,7 +14,13 @@ class App extends Component {
 
   handleMove = (e) => {
     e.preventDefault()
-    console.log(this.state.degrees)
+
+    this.setState(state => {
+      const coords = state.coords.concat(getCoords(parseFloat(state.degrees)))
+      return {
+        coords
+      }
+    })
   }
 
   render() {
