@@ -10,7 +10,7 @@ describe('Form', () => {
   })
   it('renders an button for moving the line', () => {
     const component = shallow(<Form />);
-    expect(component.find('button[id="move"]').exists()).toEqual(true)
+    expect(component.find('input[type="submit"]').exists()).toEqual(true)
   })
   
 })

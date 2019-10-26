@@ -3,17 +3,15 @@ import React from 'react'
 const Form = (props) => {
   return(
     <div id='user-input'>
-      <form>
+      <form onSubmit={props.handleMove}>
         <label>
           Enter a number:
           <input
             onChange={props.handleChange} 
             id='degrees-input' type='number' placeholder='degrees' min='-180' max='180' />
         </label>
+        <input id='move' type='submit' value='Move'></input>
       </form>
-      <button id='move' onClick={props.handleMove}>
-        Move
-      </button>
     </div>
   )
 }

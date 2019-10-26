@@ -17,14 +17,14 @@ describe('App', () => {
 
   it('receives coordinate pair as a state when move button is clicked', () => {
     component.find('#degrees-input').simulate('change', { target: { value: '90' } })
-    component.find('#move').simulate('click')
+    component.find('#move').simulate('submit')
     expect(component.state('coords')).toEqual([{x: 0, y: 20}])
   })
 
   it('chains a new coordinate pair on the existing state', () => {
     component.setState({ coords: [{x: 0, y: 20}] })
     component.find('#degrees-input').simulate('change', { target: { value: '45' } })
-    component.find('#move').simulate('click')
+    component.find('#move').simulate('submit')
     expect(component.state('coords')).toEqual([{x: 0, y: 20}, {x: 14.14214, y: 14.14214}])
   })
 })
