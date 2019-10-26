@@ -6,4 +6,12 @@ const getCoords = (degree) => {
   return {x, y}
 }
 
-export { getCoords }
+const getPath = (coords) => {
+  let path = 'M 200, 200'
+  coords.forEach(pair => {
+    path = path + ` l ${pair.x}, ${pair.y}`
+  })
+  return path
+}
+
+export { getCoords, getPath }
