@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Form from './Components/Form'
 
+class App extends Component {
+  state = {
+    degrees: ''
+  }
 
-function App() {
-  return (
-    <>
-      <div id='line' style={{'width': '400px', 'height': '400px', 'margin': 'auto', 'backgroundColor': 'grey'}}>
+  handleChange = (e) => {
+    this.setState({degrees: e.target.value});
+  }
 
-      </div>
-      <Form />
-    </>
-  )
+  render() {
+    return (
+      <>
+        <div id='line' style={{'width': '400px', 'height': '400px', 'margin': 'auto', 'backgroundColor': 'grey'}}>
+        </div>
+        <Form 
+          handleChange={this.handleChange.bind(this)}
+        />
+      </>
+    )
+  }
 }
 
 export default App
