@@ -34,9 +34,11 @@ class App extends Component {
 
   render() {
     let path = getPath(this.state.coords)
+    let display = (this.state.coords.length === 0) ? 'none' : 'block'
+
     return (
       <>
-        <div id='line' style={{'width': '400px', 'height': '400px', 'margin': 'auto', 'backgroundColor': 'grey'}}>
+        <div id='line' style={{'width': '400px', 'height': '400px', 'zIndex': '400', 'position': 'absolute', 'left': '0', 'right': '0', 'marginLeft': '0', 'marginRight': '0', 'margin': 'auto', 'display': display}}>
           <svg width='400px' height='400px'>
             <g transform='translate(0,400) scale(1,-1)'>
               <path id='current-path' d={path} fill='transparent' stroke='black'/>
