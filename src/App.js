@@ -11,7 +11,16 @@ class App extends Component {
     coords: [],
     lat: '',
     lng: '',
-    zoom: ''
+    zoom: '',
+    savedPaths: []
+  }
+
+  componentDidMount() {
+    axios.get('https://line-on-map-backend.herokuapp.com/paths').then(response => {
+      this.setState({
+        savedPaths: response.data
+      })
+    })
   }
 
   handleChange = (e) => {
@@ -81,7 +90,9 @@ class App extends Component {
           handleMove={this.handleMove.bind(this)}
           handleSave={this.handleSave.bind(this)}
         />
-        <SavedMaps />
+        <SavedMaps 
+          saved={this.state.savedPaths}
+        />
       </>
     )
   }
