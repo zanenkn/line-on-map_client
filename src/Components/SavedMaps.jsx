@@ -19,7 +19,8 @@ const SavedMaps = (props) => {
             </div>
             <Map 
               defZoom={map.zoom}
-              defCenter={{lat: map.lat, lng: map.lng}}
+              defCenter={{ lat: map.lat, lng: map.lng }}
+              options={{ scrollwheel: false, zoomControl: false, gestureHandling: 'none', fullscreenControl: false}}
             />
           </div>
         )
