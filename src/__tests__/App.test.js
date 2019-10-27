@@ -10,6 +10,7 @@ describe('App', () => {
     expect(component.find('#line').exists()).toEqual(true)
     expect(component.find('#user-input').exists()).toEqual(true)
   })
+
   it('receives degrees as a state from the input field', () => {
     const component = mount(<App />)
     component.find('#degrees-input').simulate('change', { target: { value: '55' } })
@@ -47,5 +48,9 @@ describe('App', () => {
     component.find('#degrees-input').simulate('change', { target: { value: '90' } })
     component.find('#move').simulate('submit')
     expect(component.find('#current-path').prop('d')).toEqual('M 200, 200 l 0, 20 l 14.14214, 14.14214 l 0, 20')
+  })
+  it('renders a div for saved maps', () => {
+    const component = mount(<App />)
+    expect(component.find('#saved-maps').exists()).toEqual(true)
   })
 })

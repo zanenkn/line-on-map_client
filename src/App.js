@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Form from './Components/Form'
 import Map from './Components/Map'
+import SavedMaps from './Components/SavedMaps'
 import { getCoords, getPath } from  './Modules/Calculations'
 
 class App extends Component {
@@ -80,6 +81,7 @@ class App extends Component {
           handleMove={this.handleMove.bind(this)}
           handleSave={this.handleSave.bind(this)}
         />
+        <SavedMaps />
       </>
     )
   }
