@@ -9,6 +9,8 @@ const Map = (props) => {
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
         defaultCenter={props.defCenter}
         defaultZoom={props.defZoom}
+        center={props.center}
+        zoom={props.zoom}
         yesIWantToUseGoogleMapApiInternals={true}
         onChange={props.handleMapChange}
         options={props.options != null ? Object.assign(props.options, {styles: MapStyles}) : {styles: MapStyles}}

@@ -9,9 +9,9 @@ class App extends Component {
   state = {
     degrees: '',
     coords: [],
-    lat: '',
-    lng: '',
-    zoom: '',
+    lat: 57.7089,
+    lng: 11.974599999999981,
+    zoom: 11,
     savedPaths: [],
     successMsg: false
   }
@@ -116,6 +116,8 @@ class App extends Component {
         <Map 
           defCenter={{lat: 57.7089, lng: 11.9746}}
           defZoom={11}
+          center={{lat: this.state.lat, lng: this.state.lng}}
+          zoom={this.state.zoom}
           handleMapChange={this.handleMapChange.bind(this)}
         />
         <Form 
