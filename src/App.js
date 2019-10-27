@@ -12,15 +12,20 @@ class App extends Component {
     lat: '',
     lng: '',
     zoom: '',
-    savedPaths: []
+    savedPaths: [],
+    successMsg: false
   }
 
-  componentDidMount() {
+  getSavedPaths() {
     axios.get('https://line-on-map-backend.herokuapp.com/paths').then(response => {
       this.setState({
         savedPaths: response.data
       })
     })
+  }
+
+  componentDidMount() {
+    this.getSavedPaths()
   }
 
   handleChange = (e) => {
@@ -59,20 +64,48 @@ class App extends Component {
         'zoom': this.state.zoom
       }
     })
-    .then((response) => {
-      console.log(response);
+    .then(() => {
+      this.getSavedPaths()
+      this.setState({
+        successMsg: true,
+        degrees: '',
+        coords: [],
+        lat: 57.7089,
+        lng: 11.974599999999981,
+        zoom: 11
+      })
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error)
     })
+  }
+  scrollToBottom() {
+    
   }
 
   render() {
     let path = getPath(this.state.coords)
     let display = (this.state.coords.length === 0) ? 'none' : 'block'
+    let successMsg
+
+    if (this.state.successMsg) {
+      successMsg = (
+        <>
+          <div>
+            Successfully saved!
+          </div>
+          <button onClick={() => {this.bottom.scrollIntoView({ behavior: "smooth" })}}>
+            View
+          </button>
+        </>
+      )
+    }
 
     return (
       <>
+        <div style={{ float:"left", clear: "both" }}
+          ref={(el) => { this.top = el }}>
+        </div>
         <div id='line' style={{'width': '400px', 'height': '400px', 'zIndex': '400', 'position': 'absolute', 'left': '0', 'right': '0', 'marginLeft': '0', 'marginRight': '0', 'margin': 'auto', 'display': display}}>
           <svg width='400px' height='400px'>
             <g transform='translate(0,400) scale(1,-1)'>
@@ -89,10 +122,18 @@ class App extends Component {
           handleChange={this.handleChange.bind(this)}
           handleMove={this.handleMove.bind(this)}
           handleSave={this.handleSave.bind(this)}
+          degrees={this.state.degrees}
         />
+        {successMsg}
         <SavedMaps 
           saved={this.state.savedPaths}
         />
+        <div style={{ float:"left", clear: "both" }}
+          ref={(el) => { this.bottom = el }}>
+        </div>
+        <button onClick={() => {this.top.scrollIntoView({ behavior: "smooth" })}}>
+          Scroll to top
+        </button>
       </>
     )
   }

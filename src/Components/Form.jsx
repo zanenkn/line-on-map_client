@@ -10,6 +10,7 @@ const Form = (props) => {
           <input
             onChange={props.handleChange} 
             required
+            value={props.degrees}
             id='degrees-input' type='number' placeholder='degrees' min='-180' max='180' />
         </label>
         <input id='move' type='submit' value='Move'></input>
