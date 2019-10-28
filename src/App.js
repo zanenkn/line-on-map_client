@@ -37,7 +37,8 @@ class App extends Component {
     this.setState(state => {
       const coords = state.coords.concat(getCoords(parseFloat(state.degrees)))
       return {
-        coords
+        coords,
+        successMsg: false
       }
     })
   }
@@ -94,7 +95,10 @@ class App extends Component {
           <div>
             Successfully saved!
           </div>
-          <button onClick={() => {this.bottom.scrollIntoView({ behavior: "smooth" })}}>
+          <button onClick={() => {
+            this.bottom.scrollIntoView({ behavior: "smooth" })
+            this.setState({successMsg: false})
+          }}>
             View
           </button>
         </>
