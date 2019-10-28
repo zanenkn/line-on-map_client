@@ -4,6 +4,7 @@ import Form from './Components/Form'
 import Map from './Components/Map'
 import SavedMaps from './Components/SavedMaps'
 import { getCoords, getPath } from  './Modules/Calculations'
+import './style.css'
 
 class App extends Component {
   state = {
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({degrees: e.target.value});
+    this.setState({degrees: e.target.value})
   }
 
   handleMove = (e) => {
@@ -106,24 +107,26 @@ class App extends Component {
     }
 
     return (
-      <>
+      <div className='app-wrapper'>
         <div style={{ float:"left", clear: "both" }}
           ref={(el) => { this.top = el }}>
         </div>
-        <div id='line' style={{'width': '400px', 'height': '400px', 'zIndex': '400', 'position': 'absolute', 'left': '0', 'right': '0', 'marginLeft': '0', 'marginRight': '0', 'margin': 'auto', 'display': display}}>
+        <div id='line' className='svg' style={{'display': display}}>
           <svg width='400px' height='400px'>
             <g transform='translate(0,400) scale(1,-1)'>
-              <path id='current-path' d={path} fill='transparent' stroke='black'/>
+              <path id='current-path' d={path} fill='transparent' stroke='#38b2ac' stroke-width='3'/>
             </g>
           </svg>
         </div>
-        <Map 
-          defCenter={{lat: 57.7089, lng: 11.9746}}
-          defZoom={11}
-          center={{lat: this.state.lat, lng: this.state.lng}}
-          zoom={this.state.zoom}
-          handleMapChange={this.handleMapChange.bind(this)}
-        />
+        <div id='current-map'>
+          <Map 
+            defCenter={{lat: 57.7089, lng: 11.9746}}
+            defZoom={11}
+            center={{lat: this.state.lat, lng: this.state.lng}}
+            zoom={this.state.zoom}
+            handleMapChange={this.handleMapChange.bind(this)}
+          />
+        </div>
         <Form 
           handleChange={this.handleChange.bind(this)}
           handleMove={this.handleMove.bind(this)}
@@ -140,7 +143,7 @@ class App extends Component {
         <button onClick={() => {this.top.scrollIntoView({ behavior: "smooth" })}}>
           Scroll to top
         </button>
-      </>
+      </div>
     )
   }
 }

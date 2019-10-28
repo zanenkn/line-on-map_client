@@ -4,7 +4,7 @@ import MapStyles from '../Modules/MapStyles.js'
 
 const Map = (props) => {
   return(
-    <div id='current-map' style={{'width': '400px', 'height': '400px', 'margin': 'auto'}}>
+    <div className='map'>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
         defaultCenter={props.defCenter}

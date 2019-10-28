@@ -1,0 +1,94 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #6f6f6f;
+}
+
+button {
+  display: inline-block;
+  padding: 0.8em 1em;
+  margin: auto 0.5em;
+  border-radius: 0.5em;
+  color: #FFFFFF;
+  background-color: #38b2ac;
+  text-align: center;
+  transition: all 0.2s;
+  border: none;
+  font-variant: all-small-caps;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #319795;
+}
+
+button.secondary {
+  background-color: #C8c8c8;
+}
+
+button.secondary:hover {
+  background-color: grey;
+}
+
+input {
+  margin: auto 0.5em;
+  padding: 0.75em;
+  min-width: 70px;
+  border-radius: 0.3rem;
+  border: solid;
+  border-width: thin;
+  border-color: #C8c8c8;
+}
+
+
+::placeholder {
+  color: #C8c8c8;
+}
+
+form {
+  display: table;
+  margin: 1em auto;
+}
+
+.app-wrapper {
+  width: 400px;
+  margin: auto;
+}
+
+.svg {
+  width: 400px;
+  height: 400px;
+  z-index: 4000;
+  position: absolute;
+
+  margin: auto; 
+  display: block;
+}
+
+.map {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+}
+
+#current-map {
+  border: solid;
+  border-width: 3px;
+  border-radius: 1em;
+  border-color: #38b2ac;
+  display: inline-block;
+  overflow: overlay;
+}
+
+.saved-map {
+  border: solid;
+  border-width: 1px;
+  border-radius: 0.5em;
+  border-color: #C8c8c8;
+  display: inline-block;
+  overflow: overlay;
+}
+
+.center{
+  margin: auto;
+  display: table;
+}

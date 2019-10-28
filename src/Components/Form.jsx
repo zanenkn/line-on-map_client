@@ -13,10 +13,14 @@ const Form = (props) => {
             value={props.degrees}
             id='degrees-input' type='number' placeholder='degrees' min='-180' max='180' />
         </label>
-        <input id='move' type='submit' value='Move'></input>
+        <button id='move' type='submit'>Move</button>
       </form>
     </div>
-    <button onClick={props.handleSave}>Save</button>
+    <div className='center'>
+      <button className='secondary'>Clear</button>
+      <button onClick={props.handleSave}>Save</button>
+    </div>
+    
     </>
   )
 }

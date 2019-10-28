@@ -8,20 +8,22 @@ const SavedMaps = (props) => {
         return (
           <div key={map.id}>
             <div>
-              <div style={{'width': '400px', 'height': '400px', 'zIndex': '400', 'position': 'absolute', 'left': '0', 'right': '0', 'marginLeft': '0', 'marginRight': '0', 'margin': 'auto'}}>
+              <div className='svg'>
                 <svg width='400px' height='400px'>
-                <g transform="translate(0,400) scale(1,-1)">
-                  <path d={map.svg} fill="transparent" stroke="black"/>
+                <g transform='translate(0,400) scale(1,-1)'>
+                  <path d={map.svg} fill='transparent' stroke='#38b2ac' stroke-width='3'/>
                 </g>
                 </svg>
               </div>
               <br></br>
             </div>
-            <Map 
-              defZoom={map.zoom}
-              defCenter={{ lat: map.lat, lng: map.lng }}
-              options={{ scrollwheel: false, zoomControl: false, gestureHandling: 'none', fullscreenControl: false}}
-            />
+            <div className='saved-map'>
+              <Map 
+                defZoom={map.zoom}
+                defCenter={{ lat: map.lat, lng: map.lng }}
+                options={{ scrollwheel: false, zoomControl: false, gestureHandling: 'none', fullscreenControl: false}}
+              />
+            </div>
           </div>
         )
       })}
