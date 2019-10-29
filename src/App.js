@@ -114,7 +114,7 @@ class App extends Component {
         <div id='line' className='svg' style={{'display': display}}>
           <svg width='400px' height='400px'>
             <g transform='translate(0,400) scale(1,-1)'>
-              <path id='current-path' d={path} fill='transparent' stroke='#38b2ac' stroke-width='3'/>
+              <path id='current-path' d={path} fill='transparent' stroke='#38b2ac' stroke-width='3' stroke-linecap='round'/>
             </g>
           </svg>
         </div>
@@ -140,9 +140,11 @@ class App extends Component {
         <div style={{ float:"left", clear: "both" }}
           ref={(el) => { this.bottom = el }}>
         </div>
-        <button onClick={() => {this.top.scrollIntoView({ behavior: "smooth" })}}>
-          Scroll to top
-        </button>
+        <div className='center'>
+          <button onClick={() => {this.top.scrollIntoView({ behavior: "smooth" })}}>
+            Scroll to top
+          </button>
+        </div>
       </div>
     )
   }
