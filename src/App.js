@@ -52,6 +52,16 @@ class App extends Component {
     })
   }
 
+  handleReset = () => {
+    this.setState({
+      degrees: '',
+      coords: [],
+      lat: 57.7089,
+      lng: 11.974599999999981,
+      zoom: 11
+    })
+  }
+
   handleSave = () => {
     axios({
       method: 'post',
@@ -131,6 +141,7 @@ class App extends Component {
           handleChange={this.handleChange.bind(this)}
           handleMove={this.handleMove.bind(this)}
           handleSave={this.handleSave.bind(this)}
+          handleReset={this.handleReset.bind(this)}
           degrees={this.state.degrees}
         />
         {successMsg}

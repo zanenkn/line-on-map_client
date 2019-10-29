@@ -17,7 +17,7 @@ const Form = (props) => {
       </form>
     </div>
     <div className='center'>
-      <button className='secondary'>Clear</button>
+      <button className='secondary' onClick={props.handleReset}>Reset</button>
       <button onClick={props.handleSave}>Save</button>
     </div>
     
