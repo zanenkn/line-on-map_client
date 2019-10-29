@@ -44,6 +44,18 @@ button.control-panel-button:hover {
   background-color: #4abfb9;
 }
 
+button.as-link {
+  background: none;
+  color: #38b2ac;
+  text-decoration: underline;
+  padding: 0;
+}
+
+button.as-link:hover {
+  background-color: none;
+  color: #319795;
+}
+
 input {
   margin: auto 0.5em;
   padding: 0.75em;

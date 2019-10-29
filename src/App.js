@@ -14,7 +14,9 @@ class App extends Component {
     lng: 11.974599999999981,
     zoom: 11,
     savedPaths: [],
-    successMsg: false
+    successMsg: false,
+    errorMsg: false,
+    error: ''
   }
 
   getSavedPaths() {
@@ -58,61 +60,78 @@ class App extends Component {
       coords: [],
       lat: 57.7089,
       lng: 11.974599999999981,
-      zoom: 11
+      zoom: 11,
+      errorMsg: false,
+      error: ''
     })
   }
 
   handleSave = () => {
-    axios({
-      method: 'post',
-      url: 'https://line-on-map-backend.herokuapp.com/add-path',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      data: {
-        'svg': getPath(this.state.coords),
-        'lat': this.state.lat,
-        'lng': this.state.lng,
-        'zoom': this.state.zoom
-      }
-    })
-    .then(() => {
-      this.getSavedPaths()
-      this.setState({
-        successMsg: true,
-        degrees: '',
-        coords: [],
-        lat: 57.7089,
-        lng: 11.974599999999981,
-        zoom: 11
+    if(this.state.coords.length > 0) {
+      axios({
+        method: 'post',
+        url: 'https://line-on-map-backend.herokuapp.com/add-path',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        data: {
+          'svg': getPath(this.state.coords),
+          'lat': this.state.lat,
+          'lng': this.state.lng,
+          'zoom': this.state.zoom
+        }
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-  scrollToBottom() {
-    
+      .then(() => {
+        this.getSavedPaths()
+        this.setState({
+          successMsg: true,
+          degrees: '',
+          errorMsg: false,
+          error: '',
+          coords: [],
+          lat: 57.7089,
+          lng: 11.974599999999981,
+          zoom: 11
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          errorMsg: true, 
+          error: error
+        })
+      })
+    } else {
+      this.setState({
+        error: "There's nothing to save, you gotta draw first!",
+        errorMsg: true 
+      })
+    }
   }
 
   render() {
     let path = getPath(this.state.coords)
     let display = (this.state.coords.length === 0) ? 'none' : 'block'
-    let successMsg
+    let successMsg, errorMsg
 
     if (this.state.successMsg) {
       successMsg = (
-        <>
-          <div>
+        <div className='center' style={{'display': 'inlineBox'}}>
             Successfully saved!
-          </div>
-          <button onClick={() => {
+          <button className='as-link' onClick={() => {
             this.bottom.scrollIntoView({ behavior: "smooth" })
             this.setState({successMsg: false})
           }}>
             View
           </button>
-        </>
+        </div>
+      )
+    }
+
+    if (this.state.errorMsg) {
+      errorMsg = (
+        <div className='center'>
+          {this.state.error}
+        </div>
       )
     }
 
@@ -145,6 +164,7 @@ class App extends Component {
           degrees={this.state.degrees}
         />
         {successMsg}
+        {errorMsg}
         <SavedMaps 
           saved={this.state.savedPaths}
         />
