@@ -20,14 +20,6 @@
 
 `npm test`
 
-
-## Deployed
-
-[View deployed here.](https://line-on-map.netlify.com/)
-
 ## Backend
 
-[Backend deployed here.](http://line-on-map-backend.herokuapp.com/)
-
 [Backend repo here.](https://github.com/zanenkn/line-on-map_api)
-
